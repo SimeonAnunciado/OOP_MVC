@@ -3,5 +3,5 @@ PHP OOP Project applying SOLID Principle and best practices for web development
 - Implement Singleton for DB Connection
 - SINGLE RESPONSIBILITY PRINCIPLE
 - OPEN AND CLOSED PRINCPLE
-- INHERETANCE AND POLYMORPHISM
+- INHERITANCE AND POLYMORPHISM
 - DEPENDENCY INJECTION

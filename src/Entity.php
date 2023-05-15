@@ -47,11 +47,44 @@ abstract class Entity
         return $results;
     }
 
-    public function setValues($object , $value)
+    public function setValues($object = null , $value)
     {
         foreach ($object->fields as $field) {
             $object->$field = $value[$field];
         }
         return $object;
+    }
+
+    public function save($requests){
+        $fieldBindings = [];
+        $keyBinding = [];
+
+        foreach ($this->fields as $field) {
+            if($field == 'id' || $field == 'created_at'){
+                continue;
+            }
+            $fieldBindings[$field] = $field . '=:'. $field;
+        }
+
+        foreach ($this->fields as $field) {
+            if($field == 'id'){
+                $keyBinding[$field] = $field . '=:'. $field;
+            }
+        }
+
+        $fieldBindings = join(',', $fieldBindings);
+        $keyBinding = join(',', $keyBinding);
+
+        $query = "UPDATE {$this->tableName} SET {$fieldBindings} WHERE {$keyBinding}";
+        $stmt = $this->conn->prepare($query);
+
+        return $stmt->execute($requests);
+    }
+
+    public function delete($id){
+        $query = "DELETE FROM {$this->tableName} WHERE id = :id ";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute(['id' => $id]);
+
     }
 }

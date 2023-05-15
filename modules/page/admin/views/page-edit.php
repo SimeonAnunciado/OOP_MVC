@@ -23,12 +23,12 @@
       <div class="card">
         <div class="card-body p-0">
               <div class="card-header">
-                <h3 class="card-title">Page Details </h3>
+                <h3 class="card-title">Page Details</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" action="#">
-                <input type="hidden" name="page_id" value="<?= $data->id ?? null ?>">
+              <form method="post" action="#">
+                <input type="hidden" name="id" value="<?= $data->id ?? null ?>">
                 <div class="card-body">
                   <div class="form-group">
                     <label>Title</label>

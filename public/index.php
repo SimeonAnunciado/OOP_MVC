@@ -3,7 +3,6 @@
 use src\DatabaseConnection;
 use src\Template;
 use src\Router;
-
 use modules\page\controllers\PageController;
 use modules\page\admin\controllers\PageController as AdminPageController;
 
@@ -61,18 +60,19 @@ $action = $router->action != '' ? $router->action : 'default';
 $moduleName = ucfirst(str_replace("-", "", $router->module)) . 'Controller';
 
 
+
 $controllerFIle =  MODULE_PATH. $router->module . '/controllers/'. $moduleName.'.php';
 #echo '<pre>' .print_r($router, true);
 // die();
 
 // require_once MODULE_PATH . 'page/models/Page.php';
-// require_once MODULE_PATH . 'page/controllers/PageController.php';
+#require_once MODULE_PATH . 'page/controllers/PageController.php';
 // require_once MODULE_PATH . 'user/models/User.php';
 
 
 if(file_exists($controllerFIle)){
     include $controllerFIle;
-    $controller = new $moduleName(DatabaseConnection::getConnection());
+    $controller =  new PageController(DatabaseConnection::getConnection());
     # simeon added 5/2/2023
     $controller->layout = new Template('layout/default');
     # simeon added

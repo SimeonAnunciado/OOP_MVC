@@ -6,6 +6,7 @@
           <div class="col-sm-6">
             <h1>Projects</h1>
           </div>
+
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -24,13 +25,9 @@
         <div class="card-header">
           <h3 class="card-title">Projects</h3>
 
+
           <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-              <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-              <i class="fas fa-times"></i>
-            </button>
+             <a href="/admin/index.php?module=page&action=create"class="btn btn-success btn-sm  mx-4">Create Page </a>
           </div>
         </div>
         <div class="card-body p-0">
@@ -78,11 +75,6 @@
                         <span class="badge badge-success">Success</span>
                     </td>
                     <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm" href="#">
-                            <i class="fas fa-folder">
-                            </i>
-                            View
-                        </a>
                         <a class="btn btn-info btn-sm" href="/admin/index.php?module=page&action=editPage&id=<?= $page->id ?>">
                             <i class="fas fa-pencil-alt">
                             </i>

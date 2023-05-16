@@ -216,7 +216,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item ">
             <a href="/admin/index.php?module=page" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
+              <!-- <i class="nav-icon fas fa-book"></i> -->
               <p>
                 Pages
               </p>
@@ -225,14 +225,19 @@
           </li>
           <li class="nav-item">
             <a href="/admin/index.php?module=page&action=contact" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <!-- <i class="nav-icon fas fa-th"></i> -->
               <p>
                 Contact
-                <span class="right badge badge-danger">New</span>
               </p>
             </a>
           </li>
-
+          <li class="nav-item">
+            <a href="/admin/index.php?module=dashboard&action=logout" class="nav-link">
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

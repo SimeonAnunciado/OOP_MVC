@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Projects</h1>
+            <h1>Contact us</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Projects</li>
+              <li class="breadcrumb-item active">Contact us</li>
             </ol>
           </div>
         </div>
@@ -19,27 +19,24 @@
     <!-- Main content -->
     <section class="content">
 
-      <!-- Default box -->
-      <div class="card">
+    <div class="card">
         <div class="card-body p-0">
               <div class="card-header">
                 <h3 class="card-title">Page Details</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="#">
-                <input type="hidden" name="id" value="<?= $data->id ?? null ?>">
+              <form method="POST" action="#">
                 <div class="card-body">
                   <div class="form-group">
                     <label>Title</label>
-                    <input type="text" class="form-control" name="title" value="<?= $data->title ?? '' ?>">
+                    <input type="text" class="form-control" name="title" >
                   </div>
                   <div class="form-group">
-                    <label >Content</label>
-                    <textarea class="form-control" name="content" ><?= $data->content ?? '' ?></textarea>
+                    <label>Content</label>
+                    <textarea class="form-control" name="content" ></textarea>
                   </div>
-
-                  <button type="submit" name="submit" class="btn btn-md btn-primary" style="width:100%;">Update</button>
+                  <button type="submit" name="submit" class="btn btn-md btn-primary" style="width:100%;">Create</button>
 
                 </div>
                 <!-- /.card-body -->
@@ -49,8 +46,6 @@
             </div>
         <!-- /.card-body -->
       </div>
-      <!-- /.card -->
-
     </section>
     <!-- /.content -->
   </div>

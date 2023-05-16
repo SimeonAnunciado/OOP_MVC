@@ -79,6 +79,12 @@ class DashboardController extends \src\controller{
 
     }
 
+    public function logoutAction(){
+        session_destroy();
+        unset ($_SESSION["is_admin"]);
+        header('Location: /admin/index.php?module=dashboard&action=login');
+    }
+
     public function changepasswordAction(){
         return 'change password';
     }

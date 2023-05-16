@@ -20,6 +20,7 @@ abstract class Entity
     public function findBy($fieldName, $fieldValue)
     {
         $query = "SELECT * FROM {$this->tableName} WHERE {$fieldName} = :value";
+
         $stmt = $this->conn->prepare($query);
         $stmt->execute(['value' => $fieldValue]);
 
@@ -30,8 +31,13 @@ abstract class Entity
         }
     }
 
-    public function findAll(){
+    public function findAll($sort = ''){
         $query = "SELECT * FROM {$this->tableName} ";
+
+        if($sort != ''){
+            $query .= " ORDER BY id {$sort}";
+        }
+
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         $rows =  $stmt->fetchAll(); #PDO::FETCH_OBJ return object instead
@@ -45,6 +51,12 @@ abstract class Entity
         }
         // return all rows into array of objects
         return $results;
+        #return $this;
+    }
+
+    public function sort($column, $sort = 'asc'){
+        $query = " ORDER BY ". $column . ' ' . $sort;
+        return $this;
     }
 
     public function setValues($object = null , $value)
@@ -55,7 +67,7 @@ abstract class Entity
         return $object;
     }
 
-    public function save($requests){
+    public function update($requests){
         $fieldBindings = [];
         $keyBinding = [];
 
@@ -63,7 +75,7 @@ abstract class Entity
             if($field == 'id' || $field == 'created_at'){
                 continue;
             }
-            $fieldBindings[$field] = $field . '=:'. $field;
+            $fieldBindings[] = $field . '=:'. $field;
         }
 
         foreach ($this->fields as $field) {
@@ -85,6 +97,18 @@ abstract class Entity
         $query = "DELETE FROM {$this->tableName} WHERE id = :id ";
         $stmt = $this->conn->prepare($query);
         return $stmt->execute(['id' => $id]);
+    }
 
+    public function create($requests){
+        $keys = join(' ,',  array_keys($requests));
+        $values = '';
+        foreach (array_keys($requests) as $val) {
+                $values .= ' :'. $val . ',';
+        }
+        $values = rtrim($values, ',');
+
+        $query = "INSERT INTO {$this->tableName} ( $keys ) VALUES ( $values ) ";
+        $stmt = $this->conn->prepare($query);
+        return $stmt->execute($requests);
     }
 }

@@ -26,7 +26,7 @@ class PageController extends \src\controller
     public function defaultAction()
     {
         $page = new Page($this->dbc);
-        $data = $page->findAll();
+        $data = $page->findAll('desc');
         $data['pages'] = $data;
 
         $this->layout->view('page/admin/views/page-list', $data);
@@ -52,7 +52,7 @@ class PageController extends \src\controller
                 'id' => $_POST['id'],
             ];
 
-            if ($pageObject->save($formData)) {
+            if ($pageObject->update($formData)) {
                 header('Location: /admin/index.php?module=page');
             }
         }
@@ -70,16 +70,21 @@ class PageController extends \src\controller
 
 
 
-    public function listAction()
+    public function createAction()
     {
-        // return 'list action';
-        // echo 'list ';
-        // $data = [];
-        // $this->layout->view('page/admin/views/page-list', $data);
+        if(isset($_POST['submit'])){
+            $pageObject = new Page($this->dbc);
 
+            $formData = [
+                'title' => $_POST['title'],
+                'content' => $_POST['content'],
+            ];
 
-        #die();
-        // $data = [];
-        // $this->layout->view('page/admin/views/page-list', $data);
+            if($pageObject->create($formData)){
+                header('Location: /admin/index.php?module=page');
+            }
+        }
+        $data = [];
+        $this->layout->view('page/admin/views/create', $data);
     }
 }
